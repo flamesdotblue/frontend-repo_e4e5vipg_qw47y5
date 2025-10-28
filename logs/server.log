@@ -3,32 +3,7 @@
 > vite
 
 
-  VITE v5.4.20  ready in 482 ms
+  VITE v5.4.20  ready in 522 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://172.20.21.228:3000/
-11:01:53 AM [vite] Pre-transform error: Transform failed with 1 error:
-/home/workspace/src/components/EbookActions.jsx:76:713: ERROR: Syntax error "n"
-11:01:55 AM [vite] Internal server error: Transform failed with 1 error:
-/home/workspace/src/components/EbookActions.jsx:76:713: ERROR: Syntax error "n"
-  Plugin: vite:esbuild
-  File: /home/workspace/src/components/EbookActions.jsx:76:713
-  
-  Syntax error "n"
-  74 |    // OPF (package) file
-  75 |    const spineItems = ['cover', ...story.chapters.map((_, i) => `chap${i + 1}`)]
-  76 |    oebps.file('content.opf', `<?xml version="1.0" encoding="utf-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="2.0">\n  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">\n    <dc:title>${escapeHtml(story.title)}</dc:title>\n    <dc:language>${escapeHtml(story.language || 'en')}</dc:language>\n    <dc:creator>FLAMES Storybook</dc:creator>\n    <meta name="cover" content="cover"/>\n  </metadata>\n  <manifest>\n    ${manifestItems.map(it => `<item id="${it.id}" href="${it.href}" media-type="${it['media-type']}"/>`).join('\n    ')}\n  </manifest>\n  <spine toc="ncx">\n    ${spineItems.map(id => `<itemref idref="${id}"/>`).join('\n    ')}\n  </spine>\n</package>`)\n
-     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
-  77 |    // Simple NCX (table of contents)
-  78 |    oebps.file('toc.ncx', `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE ncx PUBLIC \"-//NISO//DTD ncx 2005-1//EN\" \"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd\">\n<ncx version=\"2005-1\" xml:lang=\"en\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\">\n  <head>\n    <meta name=\"dtb:uid\" content=\"urn:uuid:${cryptoRandom()}\"/>\n  </head>\n  <docTitle><text>${escapeHtml(story.title)}</text></docTitle>\n  <navMap>\n    <navPoint id=\"navCover\" playOrder=\"1\"><navLabel><text>Cover</text></navLabel><content src=\"text/cover.xhtml\"/></navPoint>\n    ${story.chapters.map((c, i) => `<navPoint id=\"nav${i + 1}\" playOrder=\"${i + 2}\"><navLabel><text>${escapeHtml(c.title)}</text></navLabel><content src=\"text/chap${i + 1}.xhtml\"/></navPoint>`).join('\n    ')}\n  </navMap>\n</ncx>`)\n
-  
-      at failureErrorWithLog (/home/workspace/node_modules/esbuild/lib/main.js:1472:15)
-      at /home/workspace/node_modules/esbuild/lib/main.js:755:50
-      at responseCallbacks.<computed> (/home/workspace/node_modules/esbuild/lib/main.js:622:9)
-      at handleIncomingPacket (/home/workspace/node_modules/esbuild/lib/main.js:677:12)
-      at Socket.readFromStdout (/home/workspace/node_modules/esbuild/lib/main.js:600:7)
-      at Socket.emit (node:events:508:28)
-      at addChunk (node:internal/streams/readable:559:12)
-      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
-      at Readable.push (node:internal/streams/readable:390:5)
-      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
