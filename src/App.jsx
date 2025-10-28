@@ -4,6 +4,7 @@ import SystemPromptCard from './components/SystemPromptCard'
 import StoryForm from './components/StoryForm'
 import StoryPreview from './components/StoryPreview'
 import Library from './components/Library'
+import EbookActions from './components/EbookActions'
 
 function App() {
   const [generated, setGenerated] = useState(null)
@@ -14,7 +15,10 @@ function App() {
       <main className="max-w-6xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           <StoryForm onGenerated={setGenerated} />
-          <StoryPreview data={generated} />
+          <div className="rounded-xl border bg-white/70 backdrop-blur p-4 md:p-6 space-y-4">
+            <EbookActions story={generated?.story} />
+            <StoryPreview data={generated} />
+          </div>
         </div>
         <div className="space-y-6">
           <SystemPromptCard />

@@ -17,6 +17,7 @@ export default function StoryForm({ onGenerated }) {
     characters: 'Lumi, Puck, Mira',
     chapters: 5,
     save: true,
+    include_images: true,
   })
 
   const update = (k, v) => setForm((s) => ({ ...s, [k]: v }))
@@ -33,6 +34,7 @@ export default function StoryForm({ onGenerated }) {
           .filter(Boolean),
         chapters: Number(form.chapters) || 5,
         save: Boolean(form.save),
+        include_images: Boolean(form.include_images),
       }
       const res = await fetch(`${BASE_URL}/api/stories/generate`, {
         method: 'POST',
@@ -96,6 +98,10 @@ export default function StoryForm({ onGenerated }) {
         <label className="grid gap-1">
           <span className="text-sm text-gray-600">Chapters</span>
           <input type="number" min="1" max="15" value={form.chapters} onChange={(e) => update('chapters', e.target.value)} className="input" />
+        </label>
+        <label className="flex items-center gap-2 md:col-span-2">
+          <input type="checkbox" checked={form.include_images} onChange={(e) => update('include_images', e.target.checked)} />
+          <span className="text-sm text-gray-700">Include illustrations</span>
         </label>
       </div>
       <button disabled={loading} className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-md disabled:opacity-60">
